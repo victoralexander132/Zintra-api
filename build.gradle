@@ -36,7 +36,7 @@ tasks.named('test') {
 jar {
   manifest {
     attributes(
-      'Main-Class': 'zintra.ZintraApplication'
+      'Main-Class': 'com.generation.zintra.ZintraApplication'
     )
   }
 }
