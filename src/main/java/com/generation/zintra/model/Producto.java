@@ -41,8 +41,8 @@ public @Data class Producto {
     @Column(nullable = false)
     private String url;
 
-    @OneToMany(mappedBy = "producto")
+    @OneToMany(mappedBy = "producto_id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private List<CompraCarrito> compraCarrito;
+    private List<CarritoProducto> carritoProducto;
 
 }
