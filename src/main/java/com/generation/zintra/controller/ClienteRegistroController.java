@@ -5,6 +5,7 @@ import com.generation.zintra.service.ClienteRegistroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -48,4 +49,9 @@ public class ClienteRegistroController {
     return clienteRegistroService.updateClienteRegistro(clienteRegistro);
   }
 
+  // Login
+  @PostMapping("/login")
+  public boolean login(@RequestBody ClienteRegistro clienteRegistro){
+    return clienteRegistroService.verificarLogin(clienteRegistro.getEmail(), clienteRegistro.getContrasenia());
+  }
 }

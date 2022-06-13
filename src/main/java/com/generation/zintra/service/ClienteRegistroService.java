@@ -3,6 +3,7 @@ package com.generation.zintra.service;
 import com.generation.zintra.model.ClienteRegistro;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ClienteRegistroService {
     // Leer
@@ -18,5 +19,8 @@ public interface ClienteRegistroService {
 
     // Actualizar
     ClienteRegistro updateClienteRegistro(ClienteRegistro clienteRegistro);
+
+    // Login
+    boolean verificarLogin(String email, String contrasenia);
 
 }

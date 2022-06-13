@@ -3,10 +3,14 @@ package com.generation.zintra.service;
 import com.generation.zintra.model.ClienteRegistro;
 import com.generation.zintra.repository.ClienteRegistroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+
+import javax.persistence.EntityManager;
 
 @Service
 public class ClienteRegistroServiceImp implements ClienteRegistroService{
@@ -48,4 +52,12 @@ public class ClienteRegistroServiceImp implements ClienteRegistroService{
     public ClienteRegistro updateClienteRegistro(ClienteRegistro clienteRegistro) {
         return clienteRegistroRepository.save(clienteRegistro);
     }
+
+    @Override
+    public boolean verificarLogin(String email, String contrasenia) {
+        List<Map<String, Object>> lista = clienteRegistroRepository.verificarLogin(email, contrasenia);
+        return !lista.isEmpty();
+    }
+
+
 }
