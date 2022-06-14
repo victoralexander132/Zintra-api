@@ -20,7 +20,7 @@ public @Data class Pago {
     private String nombre_tarjeta;
 
     @Column(nullable = false)
-    private Integer numero_tarjeta;
+    private String numero_tarjeta;
 
     @OneToOne
     @JoinColumn(nullable = false, name = "envio_id")
