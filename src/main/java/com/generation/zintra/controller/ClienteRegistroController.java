@@ -3,21 +3,24 @@ package com.generation.zintra.controller;
 import com.generation.zintra.model.ClienteRegistro;
 import com.generation.zintra.service.ClienteRegistroService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
-import java.util.Map;
 
 
 @RestController
-@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT })
 @RequestMapping(value = "api/ClienteRegistro")
 public class ClienteRegistroController {
 
-  private final ClienteRegistroService clienteRegistroService;
+  private final ClienteRegistroService clienteRegistroService; // Inyección de Service
 
-  @Autowired
-  public ClienteRegistroController(ClienteRegistroService clienteRegistroService) {
+  private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+
+  public ClienteRegistroController(@Autowired ClienteRegistroService clienteRegistroService, @Autowired BCryptPasswordEncoder bCryptPasswordEncoder) {
     this.clienteRegistroService = clienteRegistroService;
+    this.bCryptPasswordEncoder = bCryptPasswordEncoder;
   }
 
   // Leer
@@ -34,6 +37,9 @@ public class ClienteRegistroController {
   // Escribir
   @PostMapping
   public ClienteRegistro saveClienteRegistro(@RequestBody ClienteRegistro clienteRegistro) {
+    // Encriptando contraseña
+    clienteRegistro.setContrasenia(bCryptPasswordEncoder.encode(clienteRegistro.getContrasenia()));
+    // Guardando registro en bd
     return clienteRegistroService.saveClienteRegistro(clienteRegistro);
   }
 
@@ -50,8 +56,8 @@ public class ClienteRegistroController {
   }
 
   // Login
-  @PostMapping("/login")
-  public boolean login(@RequestBody ClienteRegistro clienteRegistro){
-    return clienteRegistroService.verificarLogin(clienteRegistro.getEmail(), clienteRegistro.getContrasenia());
-  }
+//  @PostMapping("/login")
+//  public boolean login(@RequestBody ClienteRegistro clienteRegistro){
+//    return clienteRegistroService.verificarLogin(clienteRegistro.getEmail(), clienteRegistro.getContrasenia());
+//  }
 }

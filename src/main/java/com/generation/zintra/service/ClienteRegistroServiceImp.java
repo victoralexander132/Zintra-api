@@ -2,21 +2,21 @@ package com.generation.zintra.service;
 
 import com.generation.zintra.model.ClienteRegistro;
 import com.generation.zintra.repository.ClienteRegistroRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
-import javax.persistence.EntityManager;
+import static java.util.Collections.emptyList;
 
 @Service
-public class ClienteRegistroServiceImp implements ClienteRegistroService{
+public class ClienteRegistroServiceImp implements ClienteRegistroService, UserDetailsService {
 
-    ClienteRegistroRepository clienteRegistroRepository;
-    @Autowired //Si algo falla cambiar esta línea a la de abajo justo depués del paréntesis
+    private final ClienteRegistroRepository clienteRegistroRepository;
+
     public ClienteRegistroServiceImp(ClienteRegistroRepository clienteRegistroRepository) {
         this.clienteRegistroRepository = clienteRegistroRepository;
     }
@@ -53,10 +53,21 @@ public class ClienteRegistroServiceImp implements ClienteRegistroService{
         return clienteRegistroRepository.save(clienteRegistro);
     }
 
+//    @Override
+//    public boolean verificarLogin(String email, String contrasenia) {
+//        List<Map<String, Object>> lista = clienteRegistroRepository.verificarLogin(email, contrasenia);
+//        return !lista.isEmpty();
+//    }
+
     @Override
-    public boolean verificarLogin(String email, String contrasenia) {
-        List<Map<String, Object>> lista = clienteRegistroRepository.verificarLogin(email, contrasenia);
-        return !lista.isEmpty();
+    public UserDetails loadUserByUsername(String correo) throws UsernameNotFoundException {
+        // Mandamos correo para buscar al usuario por correo
+        ClienteRegistro clienteRegistro = clienteRegistroRepository.findByEmail(correo);
+
+        if (clienteRegistro == null) {
+            throw new UsernameNotFoundException(correo);
+        }
+        return new org.springframework.security.core.userdetails.User(clienteRegistro.getEmail(), clienteRegistro.getContrasenia(), emptyList());
     }
 
 
