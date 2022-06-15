@@ -49,6 +49,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, LOGIN_URL).permitAll() // Permite acceso al login
                 .antMatchers(HttpMethod.POST, "/api/ClienteRegistro").permitAll() //Permite acceso al registro
                 .antMatchers(HttpMethod.GET, "/api/Producto/all").permitAll() //Permite acceso a los productos
+                .antMatchers(HttpMethod.POST, "/api/ComentContacto").permitAll() //Permite acceso a los productos
                 .anyRequest().authenticated().and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()));
