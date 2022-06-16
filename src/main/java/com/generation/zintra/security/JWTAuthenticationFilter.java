@@ -1,7 +1,7 @@
 package com.generation.zintra.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.generation.zintra.model.ClienteRegistro;
+import com.generation.zintra.model.Usuario;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,8 +33,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException {
         try {
-            ClienteRegistro credentials = new ObjectMapper().readValue(request.getInputStream(), ClienteRegistro.class);
-            // Modificar clase Usuario por ClienteRegistro
+            Usuario credentials = new ObjectMapper().readValue(request.getInputStream(), Usuario.class);
+            // Modificar clase Usuario por Usuario
 
 
             return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(

@@ -1,10 +1,9 @@
 package com.generation.zintra.model;
 
-import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import javax.persistence.*;
 import java.util.List;
 
 
@@ -19,8 +18,8 @@ public @Data class CompraCarrito {
 
     //Recibe cliente_id
     @OneToOne
-    @JoinColumn(nullable = false, name = "cliente_id")
-    private ClienteRegistro clienteRegistro;
+    @JoinColumn(nullable = false, name = "usuario_id")
+    private Usuario usuario;
 
     //Se envia carrito_id a direccion
     @OneToOne(mappedBy = "compraCarrito", cascade = CascadeType.REMOVE)

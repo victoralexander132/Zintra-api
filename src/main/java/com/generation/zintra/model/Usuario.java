@@ -5,14 +5,15 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "clienteRegistro")
-public @Data class ClienteRegistro {
+@Table(name = "Usuario")
+public @Data class Usuario {
     /*============================================================*/
 
     //    Llave primaria - auto incrementada
     @Id
+    @Column(name="usuario_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer cliente_id;
+    private Integer usuario_id;
 
     // Columna de nombre
     @Column(nullable = false)
@@ -29,7 +30,7 @@ public @Data class ClienteRegistro {
     @Column(nullable = false)
     private String contrasenia;
 
-    @OneToOne(mappedBy = "clienteRegistro")
+    @OneToOne(mappedBy = "usuario")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private CompraCarrito compraCarrito;
 
