@@ -1,5 +1,7 @@
 package com.generation.zintra.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,6 +19,7 @@ public class CarritoProducto {
 
     @ManyToOne
     @JoinColumn(nullable = false, name = "carrito_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Carrito carrito;
 
     @Column(nullable = false, name = "cant_productos")
