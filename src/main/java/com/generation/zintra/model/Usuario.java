@@ -1,7 +1,7 @@
 package com.generation.zintra.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -32,7 +32,6 @@ public @Data class Usuario {
     private String contrasenia;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Carrito> carrito;
 
 

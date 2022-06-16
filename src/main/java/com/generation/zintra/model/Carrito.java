@@ -1,5 +1,6 @@
 package com.generation.zintra.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -18,6 +19,7 @@ public @Data class Carrito {
     //Recibe cliente_id
     @ManyToOne
     @JoinColumn(nullable = false, name = "usuario_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Usuario usuario;
 
     //Se manda carrito_id a envío
