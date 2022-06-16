@@ -3,17 +3,18 @@ package com.generation.zintra.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "Usuario")
+@Table(name = "usuario")
 public @Data class Usuario {
     /*============================================================*/
 
     //    Llave primaria - auto incrementada
     @Id
-    @Column(name="usuario_id")
+    @Column(nullable = false, name="usuario_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer usuario_id;
+    private Integer id;
 
     // Columna de nombre
     @Column(nullable = false)
@@ -30,9 +31,9 @@ public @Data class Usuario {
     @Column(nullable = false)
     private String contrasenia;
 
-    @OneToOne(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Carrito carrito;
+    private List<Carrito> carrito;
 
 
 }

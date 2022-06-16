@@ -4,11 +4,12 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "coment_contacto")
-public @Data class ComentContacto {
+@Table(name = "comentario")
+public @Data class Comentario {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Integer coment_id;
+   @Column(nullable = false, name="comentario_id")
+   private Integer id;
 
    @Column(nullable = false)
    private String nombre;

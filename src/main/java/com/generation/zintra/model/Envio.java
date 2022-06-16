@@ -14,7 +14,8 @@ public @Data class Envio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer envio_id;
+    @Column(nullable = false, name = "envio_id")
+    private Integer id;
 
     @Column(nullable = false, name = "nombre_cliente")
     private String nombre;
@@ -39,7 +40,7 @@ public @Data class Envio {
     @OneToOne
     @JoinColumn(nullable = false, name = "carrito_id")
     @JsonProperty(access = Access.WRITE_ONLY)
-    private Carrito carrito_id;
+    private Carrito carrito;
 
     @OneToOne(mappedBy = "envio", cascade = CascadeType.REMOVE)
     private Pago pago;

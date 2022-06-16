@@ -5,21 +5,21 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "CarritoProducto")
+@Table(name = "carritoproducto")
 public @Data class CarritoProducto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "carritoproducto_id")
-    private Integer carritoproducto_id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(nullable = false, name = "producto_id")
-    private Producto producto_id;
+    private Producto producto;
 
     @ManyToOne
     @JoinColumn(nullable = false, name = "carrito_id")
-    private Carrito carrito_id;
+    private Carrito carrito;
 
     @Column(nullable = false, name = "cant_productos")
     private Integer cant_productos;
