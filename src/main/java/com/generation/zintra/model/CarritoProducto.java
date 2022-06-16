@@ -1,12 +1,10 @@
 package com.generation.zintra.model;
 
-import lombok.Data;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "carritoproducto")
-public @Data class CarritoProducto {
+public class CarritoProducto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,4 +24,46 @@ public @Data class CarritoProducto {
 
     @Column(nullable = false, name = "precio")
     private Float precio;
+
+    /*Getters & Setters*/
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    public Carrito getCarrito() {
+        return carrito;
+    }
+
+    public void setCarrito(Carrito carrito) {
+        this.carrito = carrito;
+    }
+
+    public Integer getCant_productos() {
+        return cant_productos;
+    }
+
+    public void setCant_productos(Integer cant_productos) {
+        this.cant_productos = cant_productos;
+    }
+
+    public Float getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Float precio) {
+        this.precio = precio;
+    }
 }

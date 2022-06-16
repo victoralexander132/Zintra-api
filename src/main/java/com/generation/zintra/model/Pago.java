@@ -1,11 +1,10 @@
 package com.generation.zintra.model;
 
-import lombok.Data;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "pago")
-public @Data class Pago {
+public class Pago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name="pago_id")
@@ -27,4 +26,53 @@ public @Data class Pago {
     @JoinColumn(nullable = false, name = "envio_id")
     private Envio envio;
 
+    /*Getters & Setters*/
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getCvc() {
+        return cvc;
+    }
+
+    public void setCvc(Integer cvc) {
+        this.cvc = cvc;
+    }
+
+    public Integer getFecha_vencim() {
+        return fecha_vencim;
+    }
+
+    public void setFecha_vencim(Integer fecha_vencim) {
+        this.fecha_vencim = fecha_vencim;
+    }
+
+    public String getNombre_tarjeta() {
+        return nombre_tarjeta;
+    }
+
+    public void setNombre_tarjeta(String nombre_tarjeta) {
+        this.nombre_tarjeta = nombre_tarjeta;
+    }
+
+    public String getNumero_tarjeta() {
+        return numero_tarjeta;
+    }
+
+    public void setNumero_tarjeta(String numero_tarjeta) {
+        this.numero_tarjeta = numero_tarjeta;
+    }
+
+    public Envio getEnvio() {
+        return envio;
+    }
+
+    public void setEnvio(Envio envio) {
+        this.envio = envio;
+    }
 }
