@@ -19,7 +19,7 @@ public @Data class CarritoProducto {
 
     @ManyToOne
     @JoinColumn(nullable = false, name = "carrito_id")
-    private CompraCarrito compraCarrito;
+    private Carrito carrito_id;
 
     @Column(nullable = false, name = "cant_productos")
     private Integer cant_productos;

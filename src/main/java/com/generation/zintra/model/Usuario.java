@@ -32,7 +32,7 @@ public @Data class Usuario {
 
     @OneToOne(mappedBy = "usuario")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private CompraCarrito compraCarrito;
+    private Carrito carrito;
 
 
 }
