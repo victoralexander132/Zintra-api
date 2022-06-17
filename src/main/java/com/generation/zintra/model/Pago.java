@@ -1,5 +1,7 @@
 package com.generation.zintra.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -24,6 +26,7 @@ public class Pago {
 
     @OneToOne
     @JoinColumn(nullable = false, name = "envio_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Envio envio;
 
     /*Getters & Setters*/
